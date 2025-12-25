@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Pakkie Invite</title>
+  <title>Pakkie uitnodiging</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -20,6 +20,10 @@
       referrerpolicy="no-referrer-when-downgrade">
     </iframe>
   </div>
+    <hr>
+    <footer>
+        <a href="create.html">Ook een pakkie sturen?</a>
+    </footer>
 </section>
 
 <script>
@@ -31,7 +35,7 @@
   const eventInvitee = params.get('event-invitee')
   const eventLocation = params.get('event-location')
 
-  const inviteText = `${eventOrganiser}, ${eventText} op ${eventDate} met ${eventInvitee} op ${eventLocation}`
+  const inviteText = `${eventInvitee}, ${eventText} op ${eventDate} op ${eventLocation}. -${eventOrganiser}`
   document.getElementById('inviteText').textContent = inviteText
 
   if (eventLocation) {
