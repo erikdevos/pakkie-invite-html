@@ -64,7 +64,7 @@
       const formData = new FormData(form)
       const params = new URLSearchParams(formData)
 
-      const baseUrl = `${window.location.origin}/index.html`
+    const baseUrl = new URL('index.html', window.location.href).href
       generatedUrl = `${baseUrl}?${params.toString()}`
 
       resultLink.href = generatedUrl
