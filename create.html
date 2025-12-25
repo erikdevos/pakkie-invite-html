@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Create Event Invite</title>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+<section>
+    <h1 class="align-left">Create a pakkie</h1>
+  <form id="eventForm">
+
+    <div>
+      <label for="eventText">Invite text</label>
+      <input type="text" id="eventText" name="event-text" required>
+    </div>
+
+    <div>
+      <label for="eventDate">Event date</label>
+      <input type="text" id="eventDate" name="event-date" placeholder="21-12-2025" required>
+    </div>
+
+    <div>
+      <label for="eventOrganiser">Organiser</label>
+      <input type="text" id="eventOrganiser" name="event-organiser" required>
+    </div>
+
+    <div>
+      <label for="eventInvitee">Invitee</label>
+      <input type="text" id="eventInvitee" name="event-invitee" required>
+    </div>
+
+    <div>
+      <label for="eventLocation">Location</label>
+      <input type="text" id="eventLocation" name="event-location" required>
+    </div>
+    <div>
+        <button type="submit">Generate invite link</button>
+    </div>
+  </form>
+
+    <hr>
+  
+    <p>
+    <h2>Share this link:</h2>
+    <br>
+    <a id="resultLink" href="" target="_blank"></a>
+    <p>
+        <button id="copyButton" disabled>Copy link</button>
+    </p>
+  </p>
+
+  <script>
+    const form = document.getElementById('eventForm')
+    const resultLink = document.getElementById('resultLink')
+    const copyButton = document.getElementById('copyButton')
+
+    let generatedUrl = ''
+
+    form.addEventListener('submit', event => {
+      event.preventDefault()
+
+      const formData = new FormData(form)
+      const params = new URLSearchParams(formData)
+
+      const baseUrl = `${window.location.origin}/index.html`
+      generatedUrl = `${baseUrl}?${params.toString()}`
+
+      resultLink.href = generatedUrl
+      resultLink.textContent = generatedUrl
+
+      copyButton.disabled = false
+    })
+
+    copyButton.addEventListener('click', () => {
+      if (!generatedUrl) return
+
+      navigator.clipboard.writeText(generatedUrl)
+    })
+  </script>
+</section>
+</body>
+</html>

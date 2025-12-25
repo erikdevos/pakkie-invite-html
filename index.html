@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Pakkie Invite</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<section>
+  <h1 id="inviteText" class="invite-title"></h1>
+
+  <div id="mapContainer" class="invite-map">
+    <iframe
+      id="mapFrame"
+      width="90%"
+      height="450"
+      style="border:0;"
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade">
+    </iframe>
+  </div>
+</section>
+
+<script>
+  const params = new URLSearchParams(window.location.search)
+
+  const eventText = params.get('event-text')
+  const eventDate = params.get('event-date')
+  const eventOrganiser = params.get('event-organiser')
+  const eventInvitee = params.get('event-invitee')
+  const eventLocation = params.get('event-location')
+
+  const inviteText = `${eventOrganiser}, ${eventText} op ${eventDate} met ${eventInvitee} op ${eventLocation}`
+  document.getElementById('inviteText').textContent = inviteText
+
+  if (eventLocation) {
+    const encodedAddress = encodeURIComponent(eventLocation)
+    const mapUrl = `https://www.google.com/maps?q=${encodedAddress}&output=embed`
+    document.getElementById('mapFrame').src = mapUrl
+  }
+</script>
+
+</body>
+</html>
